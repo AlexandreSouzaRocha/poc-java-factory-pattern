@@ -1,4 +1,4 @@
-package br.com.poc.factory.pattern.partners;
+package br.com.poc.factory.pattern.products;
 
-public class Itau {
+public class Monitor {
 }
