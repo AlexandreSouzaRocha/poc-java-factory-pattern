@@ -104,3 +104,8 @@ Factory Method Implementation
 
 References
 =========
+https://refactoring.guru/pt-br/design-patterns/factory-method/java/example
+<br/>
+https://refactoring.guru/pt-br/design-patterns/factory-method
+<br/>
+https://www.javatpoint.com/factory-method-design-pattern
