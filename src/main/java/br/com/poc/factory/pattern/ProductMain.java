@@ -10,7 +10,7 @@ public class ProductMain {
     public static void main(String[] args) {
         productFactory = new ProductFactory();
         try {
-            product = productFactory.makeProduct("MONITOR");
+            product = productFactory.getProduct("MONITOR");
             product.sellProduct();
         } catch (Exception e) {
             System.out.println("Unhandled error: " + e.getMessage());
