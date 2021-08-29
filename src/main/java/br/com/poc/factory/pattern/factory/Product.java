@@ -7,6 +7,7 @@ public abstract  class Product {
 
     public void sellProduct() {
         IProduct product = this.createProduct();
+        System.out.println("Selling product: " + product.getProductDetails().toString());
         product.sellProduct();
     }
 }
