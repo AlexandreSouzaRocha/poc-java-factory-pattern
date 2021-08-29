@@ -7,7 +7,7 @@ import br.com.poc.factory.pattern.creators.HeadPhoneCreator;
 import br.com.poc.factory.pattern.creators.MonitorCreator;
 
 public class ProductFactory {
-    public Product makeProduct(String type) throws Exception {
+    public Product getProduct(String type) throws Exception {
         switch (type) {
             case ProductConstants.COMPUTER:
                 return new ComputerCreator();
