@@ -2,7 +2,9 @@ package br.com.poc.factory.pattern.dto;
 
 import com.google.gson.Gson;
 
-public class MonitorDTO {
+import java.io.Serializable;
+
+public class MonitorDTO implements Serializable {
     private String name;
     private int hertzValue;
     private int inches;

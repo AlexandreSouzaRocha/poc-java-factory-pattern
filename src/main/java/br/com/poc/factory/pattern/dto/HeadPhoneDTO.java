@@ -2,7 +2,9 @@ package br.com.poc.factory.pattern.dto;
 
 import com.google.gson.Gson;
 
-public class HeadPhoneDTO {
+import java.io.Serializable;
+
+public class HeadPhoneDTO implements Serializable {
     private String name;
     private String brandName;
     private boolean hasMicrophone;

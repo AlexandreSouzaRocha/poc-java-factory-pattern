@@ -2,7 +2,9 @@ package br.com.poc.factory.pattern.dto;
 
 import com.google.gson.Gson;
 
-public class ComputerDTO {
+import java.io.Serializable;
+
+public class ComputerDTO implements Serializable {
     private String name;
     private int ramSize;
     private int hardDiskSize;
