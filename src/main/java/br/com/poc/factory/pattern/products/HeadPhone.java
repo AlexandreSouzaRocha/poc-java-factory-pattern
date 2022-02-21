@@ -5,6 +5,7 @@ import br.com.poc.factory.pattern.factory.Product;
 import br.com.poc.factory.pattern.interfaces.IProduct;
 
 import javax.swing.*;
+import java.math.BigDecimal;
 
 public class HeadPhone implements IProduct {
     private HeadPhoneDTO headPhoneDTO;
@@ -14,7 +15,7 @@ public class HeadPhone implements IProduct {
     }
 
     @Override
-    public void sellProduct() {
+    public void sell() {
         JOptionPane.showMessageDialog(null, "Product Sold: " + this.getProductDetails(), "Factory Pattern", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -30,5 +31,6 @@ public class HeadPhone implements IProduct {
         this.headPhoneDTO.setChannel("7.1");
         this.headPhoneDTO.setMegaHertz(1777);
         this.headPhoneDTO.setHasMicrophone(true);
+        this.headPhoneDTO.setDiscount(new BigDecimal(10));
     }
 }

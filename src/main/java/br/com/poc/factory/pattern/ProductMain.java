@@ -12,6 +12,11 @@ public class ProductMain {
         try {
             product = productFactory.getProduct("MONITOR");
             product.sellProduct();
+            product = productFactory.getProduct("COMPUTER");
+            product.sellProduct();
+
+            product = productFactory.getProduct("HEADPHONE");
+            product.sellProduct();
         } catch (Exception e) {
             System.out.println("Unhandled error: " + e.getMessage());
             System.exit(0);

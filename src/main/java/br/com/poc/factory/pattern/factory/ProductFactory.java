@@ -8,16 +8,12 @@ import br.com.poc.factory.pattern.creators.MonitorCreator;
 
 public class ProductFactory {
     public Product getProduct(String type) throws Exception {
-        switch (type) {
-            case ProductConstants.COMPUTER:
-                return new ComputerCreator();
-            case ProductConstants.HEADPHONE:
-                return new HeadPhoneCreator();
-            case ProductConstants.MONITOR:
-                return new MonitorCreator();
-            default:
-                throw new Exception("The product type is not valid.");
-        }
+        return switch (type) {
+            case ProductConstants.COMPUTER -> new ComputerCreator();
+            case ProductConstants.HEADPHONE -> new HeadPhoneCreator();
+            case ProductConstants.MONITOR -> new MonitorCreator();
+            default -> throw new Exception("The product type is not valid.");
+        };
     }
 
 }

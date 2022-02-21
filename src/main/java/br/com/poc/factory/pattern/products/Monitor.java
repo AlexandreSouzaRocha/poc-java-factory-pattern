@@ -4,6 +4,7 @@ import br.com.poc.factory.pattern.dto.MonitorDTO;
 import br.com.poc.factory.pattern.interfaces.IProduct;
 
 import javax.swing.*;
+import java.math.BigDecimal;
 
 public class Monitor implements IProduct {
     private MonitorDTO monitorDTO;
@@ -13,7 +14,7 @@ public class Monitor implements IProduct {
     }
 
     @Override
-    public void sellProduct() {
+    public void sell() {
         JOptionPane.showMessageDialog(null, "Product Sold: " + this.getProductDetails(), "Factory Pattern", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -28,5 +29,6 @@ public class Monitor implements IProduct {
         this.monitorDTO.setBrand("DELL");
         this.monitorDTO.setHertzValue(144);
         this.monitorDTO.setInches(32);
+        this.monitorDTO.setDiscount(new BigDecimal(300));
     }
 }

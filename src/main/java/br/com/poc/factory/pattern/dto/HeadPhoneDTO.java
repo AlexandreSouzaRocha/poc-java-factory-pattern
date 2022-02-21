@@ -3,6 +3,7 @@ package br.com.poc.factory.pattern.dto;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class HeadPhoneDTO implements Serializable {
     private String name;
@@ -10,6 +11,7 @@ public class HeadPhoneDTO implements Serializable {
     private boolean hasMicrophone;
     private int megaHertz;
     private String channel;
+    private BigDecimal discount;
 
     public String getName() {
         return name;
@@ -49,6 +51,14 @@ public class HeadPhoneDTO implements Serializable {
 
     public void setChannel(String channel) {
         this.channel = channel;
+    }
+
+    public BigDecimal getDiscount() {
+        return this.discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 
     @Override

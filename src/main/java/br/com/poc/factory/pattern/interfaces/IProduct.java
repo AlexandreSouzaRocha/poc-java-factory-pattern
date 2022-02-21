@@ -1,7 +1,7 @@
 package br.com.poc.factory.pattern.interfaces;
 
 public interface IProduct {
-    void sellProduct();
+    void sell();
 
     <T> T getProductDetails();
 }

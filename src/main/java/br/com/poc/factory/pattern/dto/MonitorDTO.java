@@ -3,12 +3,14 @@ package br.com.poc.factory.pattern.dto;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class MonitorDTO implements Serializable {
     private String name;
     private int hertzValue;
     private int inches;
     private String brand;
+    private BigDecimal discount;
 
     public String getName() {
         return name;
@@ -40,6 +42,14 @@ public class MonitorDTO implements Serializable {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public BigDecimal getDiscount() {
+        return this.discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
     }
 
     @Override

@@ -102,20 +102,26 @@ import br.com.poc.factory.pattern.factory.Product;
 import br.com.poc.factory.pattern.factory.ProductFactory;
 
 public class ProductMain {
-    private static Product product;
-    private static ProductFactory productFactory;
+  private static Product product;
+  private static ProductFactory productFactory;
 
-    public static void main(String[] args) {
-        productFactory = new ProductFactory();
-        try {
-            product = productFactory.getProduct("MONITOR");
-            product.sellProduct();
-        } catch (Exception e) {
-            System.out.println("Unhandled error: " + e.getMessage());
-            System.exit(0);
-        }
+  public static void main(String[] args) {
+    productFactory = new ProductFactory();
+    try {
+      product = productFactory.getProduct("MONITOR");
+      product.sellProduct();
+      product = productFactory.getProduct("COMPUTER");
+      product.sellProduct();
+
+      product = productFactory.getProduct("HEADPHONE");
+      product.sellProduct();
+    } catch (Exception e) {
+      System.out.println("Unhandled error: " + e.getMessage());
+      System.exit(0);
     }
+  }
 }
+
 ```
 
 
@@ -124,48 +130,64 @@ The DTO's classes are the classes that have our attributes for each product and
 both implement the Serializable class if we have any manipulation of the class attributes in JSON objects.
 #### Example:
 ```java
+package br.com.poc.factory.pattern.dto;
+
+import com.google.gson.Gson;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
 public class ComputerDTO implements Serializable {
-    private String name;
-    private int ramSize;
-    private int hardDiskSize;
-    private String processorName;
+  private String name;
+  private int ramSize;
+  private int hardDiskSize;
+  private String processorName;
+  private BigDecimal discount;
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public int getRamSize() {
-        return ramSize;
-    }
+  public int getRamSize() {
+    return this.ramSize;
+  }
 
-    public void setRamSize(int ramSize) {
-        this.ramSize = ramSize;
-    }
+  public void setRamSize(int ramSize) {
+    this.ramSize = ramSize;
+  }
 
-    public int getHardDisSize() {
-        return hardDiskSize;
-    }
+  public int getHardDiskSize() {
+    return this.hardDiskSize;
+  }
 
-    public void setHardDisSize(int hardDiskSize) {
-        this.hardDiskSize = hardDiskSize;
-    }
+  public void setHardDisSize(int hardDiskSize) {
+    this.hardDiskSize = hardDiskSize;
+  }
 
-    public String getProcessorName() {
-        return processorName;
-    }
+  public String getProcessorName() {
+    return this.processorName;
+  }
 
-    public void setProcessorName(String processorName) {
-        this.processorName = processorName;
-    }
+  public void setProcessorName(String processorName) {
+    this.processorName = processorName;
+  }
 
-    @Override
-    public String toString() {
-        return new Gson().toJson(this);
-    }
+  public BigDecimal getDiscount() {
+    return this.discount;
+  }
+
+  public void setDiscount(BigDecimal discount) {
+    this.discount = discount;
+  }
+
+  @Override
+  public String toString() {
+    return new Gson().toJson(this);
+  }
 }
 
 ```
@@ -212,7 +234,7 @@ in this case the classes: Computer, Monitor and HeadPhone.
 package br.com.poc.factory.pattern.interfaces;
 
 public interface IProduct {
-    void sellProduct();
+    void sell();
 
     <T> T getProductDetails();
 }
@@ -238,7 +260,7 @@ public class Computer implements IProduct {
     }
 
     @Override
-    public void sellProduct() {
+    public void sell() {
         JOptionPane.showMessageDialog(null, "Product Sold: " + this.getProductDetails(), "Factory Pattern", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -253,6 +275,7 @@ public class Computer implements IProduct {
         this.computerDTO.setRamSize(16000);
         this.computerDTO.setProcessorName("INTEL");
         this.computerDTO.setHardDisSize(2048);
+        this.computerDTO.setDiscount(new BigDecimal(39));
     }
 }
 ```
@@ -274,7 +297,7 @@ public abstract  class Product {
     public void sellProduct() {
         IProduct product = this.createProduct();
         System.out.println("Selling product: " + product.getProductDetails().toString());
-        product.sellProduct();
+        product.sell();
     }
 }
 
@@ -295,18 +318,14 @@ import br.com.poc.factory.pattern.creators.HeadPhoneCreator;
 import br.com.poc.factory.pattern.creators.MonitorCreator;
 
 public class ProductFactory {
-    public Product getProduct(String type) throws Exception {
-        switch (type) {
-            case ProductConstants.COMPUTER:
-                return new ComputerCreator();
-            case ProductConstants.HEADPHONE:
-                return new HeadPhoneCreator();
-            case ProductConstants.MONITOR:
-                return new MonitorCreator();
-            default:
-                throw new Exception("The product type is not valid.");
-        }
-    }
+  public Product getProduct(String type) throws Exception {
+    return switch (type) {
+      case ProductConstants.COMPUTER -> new ComputerCreator();
+      case ProductConstants.HEADPHONE -> new HeadPhoneCreator();
+      case ProductConstants.MONITOR -> new MonitorCreator();
+      default -> throw new Exception("The product type is not valid.");
+    };
+  }
 
 }
 ```
@@ -321,4 +340,8 @@ References
 - What is Factory Method
   - https://refactoring.guru/pt-br/design-patterns/factory-method
   - https://www.javatpoint.com/factory-method-design-pattern
+- Java 17:
+  - https://openjdk.java.net/projects/jdk/17/
+- Maven:
+  - https://maven.apache.org/download.cgi
 <!--te-->
