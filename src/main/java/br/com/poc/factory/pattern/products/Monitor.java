@@ -6,7 +6,7 @@ import br.com.poc.factory.pattern.interfaces.IProduct;
 import javax.swing.*;
 import java.math.BigDecimal;
 
-public class Monitor implements IProduct {
+public class Monitor implements IProduct<String> {
     private MonitorDTO monitorDTO;
 
     public Monitor() {
@@ -19,9 +19,9 @@ public class Monitor implements IProduct {
     }
 
     @Override
-    public <T> T getProductDetails() {
+    public String getProductDetails() {
         this.setMonitor();
-        return (T) this.monitorDTO.toString();
+        return this.monitorDTO.toString();
     }
 
     public void setMonitor() {

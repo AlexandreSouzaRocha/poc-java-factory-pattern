@@ -6,7 +6,7 @@ import br.com.poc.factory.pattern.products.Computer;
 
 public class ComputerCreator extends Product {
     @Override
-    public IProduct createProduct() {
+    public IProduct<String> createProduct() {
         return new Computer();
     }
 }

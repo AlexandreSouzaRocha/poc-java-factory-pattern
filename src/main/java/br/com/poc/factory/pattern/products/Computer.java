@@ -6,7 +6,7 @@ import br.com.poc.factory.pattern.interfaces.IProduct;
 import javax.swing.*;
 import java.math.BigDecimal;
 
-public class Computer implements IProduct {
+public class Computer implements IProduct<String> {
     private ComputerDTO computerDTO;
 
     public Computer() {
@@ -19,9 +19,9 @@ public class Computer implements IProduct {
     }
 
     @Override
-    public <T> T getProductDetails() {
+    public String getProductDetails() {
         this.setComputer();
-        return (T) this.computerDTO.toString();
+        return this.computerDTO.toString();
     }
 
     public void setComputer() {

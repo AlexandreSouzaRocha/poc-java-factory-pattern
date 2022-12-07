@@ -1,13 +1,12 @@
 package br.com.poc.factory.pattern.products;
 
 import br.com.poc.factory.pattern.dto.HeadPhoneDTO;
-import br.com.poc.factory.pattern.factory.Product;
 import br.com.poc.factory.pattern.interfaces.IProduct;
 
 import javax.swing.*;
 import java.math.BigDecimal;
 
-public class HeadPhone implements IProduct {
+public class HeadPhone implements IProduct<String> {
     private HeadPhoneDTO headPhoneDTO;
 
     public HeadPhone() {
@@ -20,9 +19,9 @@ public class HeadPhone implements IProduct {
     }
 
     @Override
-    public <T> T getProductDetails() {
+    public String getProductDetails() {
         this.setHeadPhone();
-        return (T) this.headPhoneDTO.toString();
+        return this.headPhoneDTO.toString();
     }
 
     public void setHeadPhone() {
