@@ -2,7 +2,7 @@ package br.com.poc.factory.pattern;
 
 import java.util.UUID;
 
-import org.apache.logging.log4j.ThreadContext;
+import org.slf4j.MDC;
 
 import br.com.poc.factory.pattern.factory.Product;
 import br.com.poc.factory.pattern.factory.ProductFactory;
@@ -17,7 +17,7 @@ public class ProductMain {
 
         productFactory = new ProductFactory();
         try {
-            ThreadContext.put("requestId", UUID.randomUUID().toString());
+            MDC.put("requestId", UUID.randomUUID().toString());
             product = productFactory.getProduct("MONITOR");
             product.sellProduct();
             product = productFactory.getProduct("COMPUTER");
@@ -31,8 +31,8 @@ public class ProductMain {
             System.out.println(e.getMessage());
             throw e;
         } finally {
-            ThreadContext.remove("requestId");
-            ThreadContext.clearAll();
+            MDC.remove("requestId");
+            MDC.clear();
         }
     }
 }

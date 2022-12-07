@@ -2,11 +2,13 @@ package br.com.poc.factory.pattern.products;
 
 import br.com.poc.factory.pattern.dto.MonitorDTO;
 import br.com.poc.factory.pattern.interfaces.IProduct;
+import br.com.poc.factory.pattern.utils.Logger;
 
-import javax.swing.*;
 import java.math.BigDecimal;
 
 public class Monitor implements IProduct<String> {
+    private static final Logger LOGGER = new Logger(Monitor.class);
+
     private MonitorDTO monitorDTO;
 
     public Monitor() {
@@ -15,7 +17,7 @@ public class Monitor implements IProduct<String> {
 
     @Override
     public void sell() {
-        JOptionPane.showMessageDialog(null, "Product Sold: " + this.getProductDetails(), "Factory Pattern", JOptionPane.INFORMATION_MESSAGE);
+        LOGGER.info("Product Sold", this.monitorDTO);
     }
 
     @Override

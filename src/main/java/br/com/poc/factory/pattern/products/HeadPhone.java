@@ -2,11 +2,12 @@ package br.com.poc.factory.pattern.products;
 
 import br.com.poc.factory.pattern.dto.HeadPhoneDTO;
 import br.com.poc.factory.pattern.interfaces.IProduct;
+import br.com.poc.factory.pattern.utils.Logger;
 
-import javax.swing.*;
 import java.math.BigDecimal;
 
 public class HeadPhone implements IProduct<String> {
+    private static final Logger LOGGER = new Logger(IProduct.class);
     private HeadPhoneDTO headPhoneDTO;
 
     public HeadPhone() {
@@ -15,7 +16,7 @@ public class HeadPhone implements IProduct<String> {
 
     @Override
     public void sell() {
-        JOptionPane.showMessageDialog(null, "Product Sold: " + this.getProductDetails(), "Factory Pattern", JOptionPane.INFORMATION_MESSAGE);
+        LOGGER.info("Product Sold", this.headPhoneDTO);
     }
 
     @Override

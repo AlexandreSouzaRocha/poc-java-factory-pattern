@@ -2,11 +2,13 @@ package br.com.poc.factory.pattern.products;
 
 import br.com.poc.factory.pattern.dto.ComputerDTO;
 import br.com.poc.factory.pattern.interfaces.IProduct;
+import br.com.poc.factory.pattern.utils.Logger;
 
-import javax.swing.*;
 import java.math.BigDecimal;
 
 public class Computer implements IProduct<String> {
+    private static final Logger LOGGER = new Logger(Computer.class);
+
     private ComputerDTO computerDTO;
 
     public Computer() {
@@ -15,7 +17,7 @@ public class Computer implements IProduct<String> {
 
     @Override
     public void sell() {
-        JOptionPane.showMessageDialog(null, "Product Sold: " + this.getProductDetails(), "Factory Pattern", JOptionPane.INFORMATION_MESSAGE);
+        LOGGER.info("Product Sold", this.computerDTO);
     }
 
     @Override
@@ -32,4 +34,3 @@ public class Computer implements IProduct<String> {
         this.computerDTO.setDiscount(new BigDecimal(39));
     }
 }
-

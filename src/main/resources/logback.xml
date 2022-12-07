@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+
+<configuration>
+    <import class="ch.qos.logback.core.ConsoleAppender"/>
+    <appender name="STDOUT" class="ConsoleAppender">
+        <encoder>
+            <pattern>{"timestamp": "%d{yyyy-MM-dd'T'HH:mm:ss.SSS}", "thread": "%thread", "severityText": "%-5level", "requestId": "%X{requestId}", "event": "%X{event}", "details": "%msg", "body": %X{payload}}%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="trace">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
