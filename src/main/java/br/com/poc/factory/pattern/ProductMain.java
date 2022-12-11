@@ -9,30 +9,28 @@ import br.com.poc.factory.pattern.factory.ProductFactory;
 import br.com.poc.factory.pattern.utils.Logger;
 
 public class ProductMain {
-    private static Product product;
-    private static ProductFactory productFactory;
+  public static void main(String[] args) throws Exception {
+    final Logger LOGGER = new Logger(ProductMain.class);
+    final ProductFactory productFactory = new ProductFactory();
 
-    public static void main(String[] args) throws Exception {
-        final Logger LOGGER = new Logger(ProductMain.class);
+    Product product;
+    try {
+      MDC.put("requestId", UUID.randomUUID().toString());
+      product = productFactory.getProduct("MONITOR");
+      product.sellProduct();
+      product = productFactory.getProduct("COMPUTER");
+      product.sellProduct();
 
-        productFactory = new ProductFactory();
-        try {
-            MDC.put("requestId", UUID.randomUUID().toString());
-            product = productFactory.getProduct("MONITOR");
-            product.sellProduct();
-            product = productFactory.getProduct("COMPUTER");
-            product.sellProduct();
+      product = productFactory.getProduct("HEADPHONE");
+      product.sellProduct();
 
-            product = productFactory.getProduct("HEADPHONE");
-            product.sellProduct();
-
-            LOGGER.info("Process finished");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw e;
-        } finally {
-            MDC.remove("requestId");
-            MDC.clear();
-        }
+      LOGGER.info("Process finished");
+    } catch (Exception e) {
+      LOGGER.error("Failed to process product factory", e.getMessage());
+      throw e;
+    } finally {
+      MDC.remove("requestId");
+      MDC.clear();
     }
+  }
 }
